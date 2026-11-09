@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    # Comparte la red con MySQL: así "localhost" funciona igual que en el libro
+    network_mode: service:db
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ejemplo
+      MYSQL_USER: ejemplo
+      MYSQL_PASSWORD: ejemplo
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_0900_ai_ci
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  mysql-data:

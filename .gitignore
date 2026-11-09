@@ -1,0 +1,10 @@
+# Conectores (se descargan solos al crear el Codespace)
+DB/jars/*.jar
+!DB/jars/db4o*.jar
+# Ficheros temporales de las bases de datos
+derby.log
+*.lck
+DB/DERBY/*/tmp/
+DB/HSQLDB/*.tmp/
+*.class
+a.out

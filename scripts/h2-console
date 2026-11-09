@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Consola web de H2 (Figura 2.3). Se abre en el puerto 8082.
+# URL JDBC de ejemplo: jdbc:h2:~/DB/H2/ejemplo/ejemplo   usuario: sa   sin contraseña
+EXTRA=""
+[ -n "${CODESPACE_NAME:-}" ] && EXTRA="-webExternalNames ${CODESPACE_NAME}-8082.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}"
+echo "Consola H2 en el puerto 8082 (Ctrl+C para pararla)"
+exec java org.h2.tools.Server -web -webPort 8082 -webAllowOthers -ifNotExists $EXTRA

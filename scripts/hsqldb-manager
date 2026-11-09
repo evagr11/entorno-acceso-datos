@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Interfaz gráfica de HSQLDB (Figuras 2.1 y 2.2 del libro).
+# Se ve en el "Escritorio": pestaña PUERTOS > puerto 6080 > abrir en el navegador (clave: vscode)
+export DISPLAY="${DISPLAY:-:1}"
+nohup java org.hsqldb.util.DatabaseManagerSwing "$@" >/dev/null 2>&1 &
+echo "HSQLDB Database Manager abierto en el Escritorio (puerto 6080, clave: vscode)"

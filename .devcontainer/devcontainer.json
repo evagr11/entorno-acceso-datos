@@ -1,0 +1,36 @@
+{
+  "name": "Acceso a Datos - Tema 2 (Manejo de conectores)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "password": "vscode",
+      "webPort": "6080"
+    }
+  },
+
+  "forwardPorts": [6080, 8082, 3306],
+  "portsAttributes": {
+    "6080": { "label": "Escritorio (HSQLDB, ventanas Java)", "onAutoForward": "notify" },
+    "8082": { "label": "Consola H2", "onAutoForward": "openBrowser" },
+    "3306": { "label": "MySQL", "onAutoForward": "silent" }
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "qwtel.sqlite-viewer",
+        "ms-vscode.cpptools"
+      ],
+      "settings": {
+        "java.project.referencedLibraries": ["DB/jars/**/*.jar"],
+        "files.encoding": "utf8"
+      }
+    }
+  }
+}

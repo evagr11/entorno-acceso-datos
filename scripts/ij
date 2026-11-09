@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Consola ij de Apache Derby (como en el libro: java org.apache.derby.tools.ij)
+exec java org.apache.derby.tools.ij "$@"
