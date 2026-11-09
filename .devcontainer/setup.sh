@@ -33,6 +33,7 @@ bajar org/xerial/sqlite-jdbc/3.46.1.3/sqlite-jdbc-3.46.1.3.jar            sqlite
 bajar org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar                     slf4j-api.jar
 bajar org/slf4j/slf4j-nop/2.0.16/slf4j-nop-2.0.16.jar                     slf4j-nop.jar
 bajar com/mysql/mysql-connector-j/9.1.0/mysql-connector-j-9.1.0.jar       mysql-connector-j.jar
+bajar com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/ojdbc11-23.5.0.24.07.jar ojdbc11.jar
 ls "$JARS"/db4o*.jar >/dev/null 2>&1 && ok "db4o encontrado" \
   || warn "Falta el jar de Db4o: súbelo a DB/jars (arrástralo al explorador de archivos)"
 

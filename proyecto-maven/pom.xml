@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Proyecto Maven para los ejercicios del Tema 2 que necesitan muchas librerías:
+    - JasperReports (ejemplo del libro, Actividad 2.13 y Ejercicio 10)
+    - UCanAccess para Access (Ejercicio 10)
+    - JAXB (Ejercicios 11 y 13; en el 13 las clases se generan desde el XSD)
+  Maven descarga todas las librerías solo. Para ejecutar:  ./ejecutar.sh <Clase> [args]
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>es.accesodatos</groupId>
+  <artifactId>tema2-conectores</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- Conector MySQL -->
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>9.1.0</version>
+    </dependency>
+
+    <!-- JasperReports -->
+    <dependency>
+      <groupId>net.sf.jasperreports</groupId>
+      <artifactId>jasperreports</artifactId>
+      <version>6.21.3</version>
+    </dependency>
+
+    <!-- UCanAccess (bases de datos Access .accdb) -->
+    <dependency>
+      <groupId>net.sf.ucanaccess</groupId>
+      <artifactId>ucanaccess</artifactId>
+      <version>5.0.1</version>
+    </dependency>
+
+    <!-- JAXB -->
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>4.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>4.0.5</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+
+      <!-- Ejercicio 13: genera las clases Java a partir de src/main/xsd/empleydepar.xsd -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>xjc</id>
+            <goals><goal>xjc</goal></goals>
+          </execution>
+        </executions>
+        <configuration>
+          <sources><source>src/main/xsd</source></sources>
+          <packageName>ejercicio13</packageName>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

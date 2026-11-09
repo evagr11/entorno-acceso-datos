@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ACTIVIDAD 2.13: por cada departamento, sus datos, número de empleados, media y suma
+     de salario (0 si no tiene empleados). Documento apaisado (Landscape). -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    name="Resumendepartamentos" orientation="Landscape" pageWidth="842" pageHeight="595"
+    columnWidth="802" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30">
+  <parameter name="titulo" class="java.lang.String"/>
+  <parameter name="autor" class="java.lang.String"/>
+  <parameter name="fecha" class="java.lang.String"/>
+  <queryString>
+    <![CDATA[SELECT d.dept_no, d.dnombre, d.loc,
+       COUNT(e.emp_no) AS nemple,
+       IFNULL(AVG(e.salario), 0) AS media,
+       IFNULL(SUM(e.salario), 0) AS suma
+FROM departamentos d LEFT JOIN empleados e ON d.dept_no = e.dept_no
+GROUP BY d.dept_no, d.dnombre, d.loc
+ORDER BY d.dept_no]]>
+  </queryString>
+  <field name="dept_no" class="java.lang.Number"/>
+  <field name="dnombre" class="java.lang.String"/>
+  <field name="loc" class="java.lang.String"/>
+  <field name="nemple" class="java.lang.Number"/>
+  <field name="media" class="java.lang.Number"/>
+  <field name="suma" class="java.lang.Number"/>
+
+  <title>
+    <band height="60">
+      <textField>
+        <reportElement x="0" y="10" width="800" height="30"/>
+        <textElement textAlignment="Center"><font size="20"/></textElement>
+        <textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement x="0" y="40" width="800" height="20"/>
+        <textElement textAlignment="Center"/>
+        <textFieldExpression><![CDATA["Realizado por: " + $P{autor} + " on " + $P{fecha}]]></textFieldExpression>
+      </textField>
+    </band>
+  </title>
+
+  <columnHeader>
+    <band height="30">
+      <rectangle>
+        <reportElement x="0" y="0" width="800" height="25"/>
+      </rectangle>
+      <staticText><reportElement x="5" y="5" width="90" height="15"/><text><![CDATA[Código depart]]></text></staticText>
+      <staticText><reportElement x="100" y="5" width="150" height="15"/><text><![CDATA[Nombre departamento]]></text></staticText>
+      <staticText><reportElement x="255" y="5" width="140" height="15"/><text><![CDATA[Localidad departamento]]></text></staticText>
+      <staticText><reportElement x="400" y="5" width="120" height="15"/><textElement textAlignment="Right"/><text><![CDATA[Número de empleados]]></text></staticText>
+      <staticText><reportElement x="530" y="5" width="120" height="15"/><textElement textAlignment="Right"/><text><![CDATA[Media de salario]]></text></staticText>
+      <staticText><reportElement x="660" y="5" width="130" height="15"/><textElement textAlignment="Right"/><text><![CDATA[Suma de salarios]]></text></staticText>
+    </band>
+  </columnHeader>
+
+  <detail>
+    <band height="25">
+      <textField><reportElement x="35" y="5" width="60" height="15"/><textFieldExpression><![CDATA[$F{dept_no}]]></textFieldExpression></textField>
+      <textField><reportElement x="100" y="5" width="150" height="15"/><textFieldExpression><![CDATA[$F{dnombre}]]></textFieldExpression></textField>
+      <textField><reportElement x="255" y="5" width="140" height="15"/><textFieldExpression><![CDATA[$F{loc}]]></textFieldExpression></textField>
+      <textField><reportElement x="400" y="5" width="120" height="15"/><textElement textAlignment="Right"/><textFieldExpression><![CDATA[$F{nemple}]]></textFieldExpression></textField>
+      <textField pattern="#,##0.00"><reportElement x="530" y="5" width="120" height="15"/><textElement textAlignment="Right"/><textFieldExpression><![CDATA[$F{media}]]></textFieldExpression></textField>
+      <textField pattern="#,##0.00"><reportElement x="660" y="5" width="130" height="15"/><textElement textAlignment="Right"/><textFieldExpression><![CDATA[$F{suma}]]></textFieldExpression></textField>
+    </band>
+  </detail>
+
+  <pageFooter>
+    <band height="32">
+      <line>
+        <reportElement positionType="FixRelativeToBottom" x="0" y="3" width="800" height="1"/>
+        <graphicElement><pen lineWidth="2.0" lineColor="#FF0000"/></graphicElement>
+      </line>
+      <textField>
+        <reportElement x="640" y="10" width="110" height="20"/>
+        <textElement textAlignment="Right"><font isBold="true" isItalic="true"/></textElement>
+        <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+      </textField>
+      <textField evaluationTime="Report">
+        <reportElement x="750" y="10" width="40" height="20"/>
+        <textElement><font isBold="true" isItalic="true"/></textElement>
+        <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+      </textField>
+    </band>
+  </pageFooter>
+
+  <summary>
+    <band height="40">
+      <rectangle><reportElement x="0" y="0" width="800" height="25"/></rectangle>
+      <textField>
+        <reportElement x="10" y="5" width="300" height="15"/>
+        <textElement textAlignment="Left"/>
+        <textFieldExpression><![CDATA["Total Registros: " + String.valueOf($V{REPORT_COUNT})]]></textFieldExpression>
+      </textField>
+    </band>
+  </summary>
+</jasperReport>

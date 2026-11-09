@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EJERCICIO 10: informe de todas las ventas (BD Access ejemplo.accdb) -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    name="Resumenventas" orientation="Landscape" pageWidth="842" pageHeight="595"
+    columnWidth="802" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30">
+  <parameter name="titulo" class="java.lang.String"/>
+  <parameter name="autor" class="java.lang.String"/>
+  <parameter name="fecha" class="java.lang.String"/>
+  <queryString>
+    <![CDATA[SELECT v.IDVENTA, v.FECHAVENTA, c.ID AS IDCLI, c.NOMBRE, c.POBLACION,
+       p.ID AS IDPRO, p.DESCRIPCION, p.PVP, v.CANTIDAD, p.PVP * v.CANTIDAD AS IMPORTE
+FROM (VENTAS v INNER JOIN CLIENTES c ON v.IDCLIENTE = c.ID)
+     INNER JOIN PRODUCTOS p ON v.IDPRODUCTO = p.ID
+ORDER BY v.IDVENTA]]>
+  </queryString>
+  <field name="IDVENTA" class="java.lang.Number"/>
+  <field name="FECHAVENTA" class="java.util.Date"/>
+  <field name="IDCLI" class="java.lang.Number"/>
+  <field name="NOMBRE" class="java.lang.String"/>
+  <field name="POBLACION" class="java.lang.String"/>
+  <field name="IDPRO" class="java.lang.Number"/>
+  <field name="DESCRIPCION" class="java.lang.String"/>
+  <field name="PVP" class="java.lang.Number"/>
+  <field name="CANTIDAD" class="java.lang.Number"/>
+  <field name="IMPORTE" class="java.lang.Number"/>
+
+  <title>
+    <band height="55">
+      <textField>
+        <reportElement x="0" y="5" width="800" height="30"/>
+        <textElement textAlignment="Center"><font size="20"/></textElement>
+        <textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement x="0" y="35" width="800" height="20"/>
+        <textElement textAlignment="Center"/>
+        <textFieldExpression><![CDATA["Realizado por: " + $P{autor} + " on " + $P{fecha}]]></textFieldExpression>
+      </textField>
+    </band>
+  </title>
+
+  <columnHeader>
+    <band height="28">
+      <rectangle><reportElement x="0" y="0" width="800" height="25"/></rectangle>
+      <staticText><reportElement x="5" y="5" width="45" height="15"/><text><![CDATA[Id Venta]]></text></staticText>
+      <staticText><reportElement x="50" y="5" width="70" height="15"/><text><![CDATA[Fecha]]></text></staticText>
+      <staticText><reportElement x="120" y="5" width="40" height="15"/><text><![CDATA[Id Cli]]></text></staticText>
+      <staticText><reportElement x="160" y="5" width="130" height="15"/><text><![CDATA[Nombre Cliente]]></text></staticText>
+      <staticText><reportElement x="290" y="5" width="110" height="15"/><text><![CDATA[Población Cliente]]></text></staticText>
+      <staticText><reportElement x="400" y="5" width="40" height="15"/><text><![CDATA[Id Pro]]></text></staticText>
+      <staticText><reportElement x="440" y="5" width="170" height="15"/><text><![CDATA[Descripción Producto]]></text></staticText>
+      <staticText><reportElement x="610" y="5" width="60" height="15"/><textElement textAlignment="Right"/><text><![CDATA[Precio]]></text></staticText>
+      <staticText><reportElement x="670" y="5" width="55" height="15"/><textElement textAlignment="Right"/><text><![CDATA[Cantidad]]></text></staticText>
+      <staticText><reportElement x="725" y="5" width="70" height="15"/><textElement textAlignment="Right"/><text><![CDATA[Importe]]></text></staticText>
+    </band>
+  </columnHeader>
+
+  <detail>
+    <band height="20">
+      <textField><reportElement x="5" y="3" width="45" height="15"/><textFieldExpression><![CDATA[$F{IDVENTA}]]></textFieldExpression></textField>
+      <textField pattern="yyyy-MM-dd"><reportElement x="50" y="3" width="70" height="15"/><textFieldExpression><![CDATA[$F{FECHAVENTA}]]></textFieldExpression></textField>
+      <textField><reportElement x="120" y="3" width="40" height="15"/><textFieldExpression><![CDATA[$F{IDCLI}]]></textFieldExpression></textField>
+      <textField><reportElement x="160" y="3" width="130" height="15"/><textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression></textField>
+      <textField><reportElement x="290" y="3" width="110" height="15"/><textFieldExpression><![CDATA[$F{POBLACION}]]></textFieldExpression></textField>
+      <textField><reportElement x="400" y="3" width="40" height="15"/><textFieldExpression><![CDATA[$F{IDPRO}]]></textFieldExpression></textField>
+      <textField><reportElement x="440" y="3" width="170" height="15"/><textFieldExpression><![CDATA[$F{DESCRIPCION}]]></textFieldExpression></textField>
+      <textField pattern="#,##0.00"><reportElement x="610" y="3" width="60" height="15"/><textElement textAlignment="Right"/><textFieldExpression><![CDATA[$F{PVP}]]></textFieldExpression></textField>
+      <textField><reportElement x="670" y="3" width="55" height="15"/><textElement textAlignment="Right"/><textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression></textField>
+      <textField pattern="#,##0.00"><reportElement x="725" y="3" width="70" height="15"/><textElement textAlignment="Right"/><textFieldExpression><![CDATA[$F{IMPORTE}]]></textFieldExpression></textField>
+    </band>
+  </detail>
+
+  <pageFooter>
+    <band height="32">
+      <line>
+        <reportElement positionType="FixRelativeToBottom" x="0" y="3" width="800" height="1"/>
+        <graphicElement><pen lineWidth="2.0" lineColor="#FF0000"/></graphicElement>
+      </line>
+      <textField>
+        <reportElement x="640" y="10" width="110" height="20"/>
+        <textElement textAlignment="Right"><font isBold="true" isItalic="true"/></textElement>
+        <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+      </textField>
+      <textField evaluationTime="Report">
+        <reportElement x="750" y="10" width="40" height="20"/>
+        <textElement><font isBold="true" isItalic="true"/></textElement>
+        <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+      </textField>
+    </band>
+  </pageFooter>
+
+  <summary>
+    <band height="40">
+      <rectangle><reportElement x="0" y="0" width="800" height="25"/></rectangle>
+      <textField>
+        <reportElement x="10" y="5" width="300" height="15"/>
+        <textFieldExpression><![CDATA["Total Registros: " + String.valueOf($V{REPORT_COUNT})]]></textFieldExpression>
+      </textField>
+    </band>
+  </summary>
+</jasperReport>

@@ -8,3 +8,11 @@ DB/DERBY/*/tmp/
 DB/HSQLDB/*.tmp/
 *.class
 a.out
+# Proyecto Maven: compilados y ficheros que generan los programas
+proyecto-maven/target/
+proyecto-maven/informes/*
+!proyecto-maven/informes/.gitkeep
+proyecto-maven/*.accdb
+proyecto-maven/*.xml
+!proyecto-maven/pom.xml
+actividades/2.7-jdbc-odbc/actividad2_7

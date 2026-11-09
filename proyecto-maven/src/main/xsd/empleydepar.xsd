@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  EJERCICIO 13: XSD que describe el documento empleydepar.xml.
+  Tres tipos:
+    - DatosempledepartType: elemento raíz, compuesto por Departamentos.
+    - Departamentos: depno, dnombre, loc y los Empleados del departamento.
+    - Empleados: empno, apellido, oficio y salario.
+  Maven (jaxb2-maven-plugin) genera las clases Java de este XSD en el paquete ejercicio13.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="Datosempledepart" type="DatosempledepartType"/>
+
+  <xs:complexType name="DatosempledepartType">
+    <xs:sequence>
+      <xs:element name="Departamento" type="Departamentos" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Departamentos">
+    <xs:sequence>
+      <xs:element name="depno" type="xs:int"/>
+      <xs:element name="dnombre" type="xs:string"/>
+      <xs:element name="loc" type="xs:string"/>
+      <xs:element name="Empleados" type="Empleados" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Empleados">
+    <xs:sequence>
+      <xs:element name="empno" type="xs:int"/>
+      <xs:element name="apellido" type="xs:string"/>
+      <xs:element name="oficio" type="xs:string"/>
+      <xs:element name="salario" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

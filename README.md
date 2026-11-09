@@ -56,12 +56,19 @@ gcc conexion.c -lodbc -std=gnu99 && ./a.out
 DB/              bases de datos (SQLITE, DERBY, HSQLDB, H2, DB4O) y conectores (jars)
 scripts/         lanzadores y scripts SQL de las BD ejemplo
 ejemplos/        programas del libro (Java y C)
-actividades/     tus actividades (Actividad 2.1 ya hecha)
+actividades/              actividades 2.1 a 2.13 del tema
+comprueba-tu-aprendizaje/ ejercicios 1 a 13 de "Comprueba tu aprendizaje"
+ampliacion/               actividad de ampliación 1
+proyecto-maven/           programas con JasperReports, Access y JAXB (2.13, ej. 10, 11 y 13)
 ```
+
+**Todas las actividades y ejercicios del tema están resueltos.** En
+[`actividades/README.md`](actividades/README.md) tienes la lista con el comando para ejecutar cada uno.
 
 Para guardar tu trabajo en GitHub: pestaña **Control de código fuente** → escribe un mensaje → **Commit** → **Sync**.
 
 ## Limitaciones
 
 - **Actividad 2.7 (puente JDBC-ODBC):** solo existe hasta Java 7, como avisa el libro (pág. 95). Con Java 21 no se puede hacer.
-- **Oracle (Actividad 2.8):** no incluido.
+- **Oracle:** el Codespace no trae Oracle. El código de las partes de Oracle está hecho, pero hay que ejecutarlo en un equipo con Oracle XE.
+- **MySQL** tiene además la BD `unidad2` (usuario `unidad2`, clave `unidad2`) para los ejercicios 5, 6, 7 y 10.
