@@ -50,7 +50,7 @@ export CLASSPATH
 # <<< tema2-acceso-datos <<<
 EOF
 CLASSPATH="."; for j in "$JARS"/*.jar; do [ -e "$j" ] && CLASSPATH="$CLASSPATH:$j"; done; export CLASSPATH
-chmod +x "$SCRIPTS"/*.sh "$SCRIPTS"/ij "$SCRIPTS"/hsqldb-manager "$SCRIPTS"/h2-console
+chmod +x "$SCRIPTS"/*.sh "$SCRIPTS"/ij "$SCRIPTS"/hsqldb-manager "$SCRIPTS"/h2-console "$SCRIPTS"/ver-bd
 ok "Listo"
 
 info "Bases de datos 'ejemplo' (solo si no existen, para no borrar tu trabajo)"

@@ -29,6 +29,8 @@ Todas las BD `ejemplo` traen las tablas **departamentos** y **empleados** con lo
 - `~/DB` es la carpeta `DB` de este repo (igual que `/home/usuario/DB` en el libro).
 - Los conectores JDBC están en `DB/jars` y ya están en el `CLASSPATH`, así que los comandos del libro
   (`java org.apache.derby.tools.ij`, `java org.hsqldb.util.DatabaseManager`…) funcionan tal cual.
+- `ver-bd <url> [usuario] [clave]` muestra todas las tablas (columnas y filas) de cualquier BD, por ejemplo
+  `ver-bd jdbc:sqlite:DB/SQLITE/ejemplo.db` o `ver-bd jdbc:mysql://localhost/ejemplo ejemplo ejemplo`.
 - `probar-todo.sh` comprueba que las 5 bases de datos responden por JDBC.
 - `recrear-ejemplos.sh` deja las BD `ejemplo` como al principio.
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Muestra todas las tablas (columnas y filas) de cualquier BD del tema.
+# Uso: ver-bd <url> [usuario] [clave]
+#   ver-bd jdbc:sqlite:actividades/2.1-sqlite/actividad2_1.db
+#   ver-bd jdbc:derby:DB/DERBY/actividad2_2
+#   ver-bd jdbc:hsqldb:file:DB/HSQLDB/actividad2_3/actividad2_3 SA
+#   ver-bd jdbc:h2:./DB/H2/actividad2_4/actividad2_4 sa
+#   ver-bd jdbc:mysql://localhost/ejemplo ejemplo ejemplo
+exec java "$(dirname "$0")/VerBD.java" "$@"
