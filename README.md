@@ -43,6 +43,7 @@ Ahí aparece la ventana de HSQLDB al ejecutar `hsqldb-manager`.
 
 - Ejemplo de la pág. 89 (JDBC con MySQL): `cd ejemplos/java && java Main.java`
 - En VS Code puedes abrir cualquier `.java` y pulsar **Run**: los jars de `DB/jars` ya están enlazados.
+- La documentación de todas las clases está en el [Javadoc](https://evagr11.github.io/entorno-acceso-datos/javadoc/) (carpeta `docs/javadoc/`).
 
 ### Programa C con ODBC (pág. 84)
 
@@ -62,6 +63,7 @@ actividades/              actividades 2.1 a 2.13 del tema
 comprueba-tu-aprendizaje/ ejercicios 1 a 13 de "Comprueba tu aprendizaje"
 ampliacion/               actividad de ampliación 1
 proyecto-maven/           programas con JasperReports, Access y JAXB (2.13, ej. 10, 11 y 13)
+docs/javadoc/             Javadoc generado (publicado en GitHub Pages)
 ```
 
 **Todas las actividades y ejercicios del tema están resueltos.** En
