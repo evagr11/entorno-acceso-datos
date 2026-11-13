@@ -9,7 +9,7 @@ Se abre desde el navegador en cualquier ordenador (clase o casa), sin instalar n
 2. La primera vez tarda unos minutos: se prepara todo solo (verás el progreso en la terminal).
 3. Las siguientes veces: **Code → Codespaces →** elige el que ya creaste. Todo lo que hiciste sigue ahí.
 
-> Al terminar, para el Codespace (menú ☰ → *Stop Current Codespace* o se para solo a los 30 min sin uso).
+> Al terminar, para el Codespace (menú → *Stop Current Codespace* o se para solo a los 30 min sin uso).
 > El plan gratuito incluye unas 60 horas al mes.
 
 ## Qué incluye
